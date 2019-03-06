@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utils {
+    public static void main(String[] args) {
+        ArrayList<ElectionResult> test = new ArrayList<>();
+        System.out.println(parse2016ElectionResults("data/2016_Presidential_Results.csv"));
+        }
+
     public static String readFileAsString(String filepath) {
         StringBuilder output = new StringBuilder();
 
@@ -24,35 +29,37 @@ public class Utils {
         ArrayList<ElectionResult> output = new ArrayList<>();
         String[] allLines = data.split("\n");
         for (int i = 1; i < allLines.length; i++) {
-            String s = allLines[i];
-            int length = s.length();
-            int index = s.indexOf(",");
-            s = s.substring(index, length);
-            s = s.substring(0, s.indexOf("%")) + s.substring(s.indexOf("%") + 1, s.length());
-            int val = s.indexOf("\"");
-            if (val != -1) {
-                int num = s.indexOf("\"") + 1;
-                String strand = s.substring(num, s.length());
-                strand = strand.substring(0, strand.indexOf("\""));
-                int num2 = strand.indexOf(",");
-                while (num2 != -1) {
-                    strand = strand.substring(0, strand.indexOf(",")) + strand.substring(strand.indexOf(",") + 1, strand.length());
+            String line = allLines[i];
+            int indexComma = line.indexOf(",");
+            line = line.substring(indexComma + 1, line.length());
+            int indexMod = line.indexOf("%");
+            int size = line.length();
+            String primary = line.substring(0, indexMod);
+            String secondary = line.substring((indexMod + 1), size);
+            line = primary + secondary;
+            if (line.indexOf("\"") != -1){
+                String now = line.substring(line.indexOf("\"") + 1, line.length());
+                now = now.substring(0, now.indexOf("\""));
+                while (now.indexOf(",") != -1){
+                    now = now.substring(0, now.indexOf(",")) + now.substring(now.indexOf(",") + 1, now.length());
                 }
-                int slantIndex = s.indexOf("\"");
-                s = s.substring(0, slantIndex) + strand + s.substring(s.indexOf("\"", s.indexOf("\"") + 1) + 1, s.length());
+                int indexSlash = line.indexOf("\"");
+                String one = line.substring(0, indexSlash);
+                String two = line.substring(line.indexOf("\"", line.indexOf("\"") + 1) + 1, line.length());
+                line = one + now + two;
             }
-            System.out.println(s);
-            String[] vals = s.split(",");
-            double demVotes = Double.parseDouble(vals[0]);
-            double gopVotes = Double.parseDouble(vals[1]);
-            double totalVotes = Double.parseDouble(vals[2]);
-            double perDem = Double.parseDouble(vals[3]);
-            double perGop = Double.parseDouble(vals[4]);
-            int difference = Integer.parseInt(vals[5]);
-            double pointDiff = Double.parseDouble(vals[6]);
-            String state = vals[7];
-            String country = vals[8];
-            int combo = Integer.parseInt(vals[9]);
+            System.out.println(line);
+            String[] values = line.split(",");
+            double demVotes = Double.parseDouble(values[0]);
+            double gopVotes = Double.parseDouble(values[1]);
+            double totalVotes = Double.parseDouble(values[2]);
+            double perDem = Double.parseDouble(values[3]);
+            double perGop = Double.parseDouble(values[4]);
+            int difference = Integer.parseInt(values[5]);
+            double pointDiff = Double.parseDouble(values[6]);
+            String state = values[7];
+            String country = values[8];
+            int combo = Integer.parseInt(values[9]);
             ElectionResult result = new ElectionResult(demVotes, gopVotes, totalVotes, perDem, perGop, difference, pointDiff, state, country, combo);
             output.add(result);
         }
