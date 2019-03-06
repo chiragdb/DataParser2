@@ -5,9 +5,8 @@ import java.util.Scanner;
 
 public class Utils {
     public static void main(String[] args) {
-        ArrayList<ElectionResult> test = new ArrayList<>();
-        System.out.println(parse2016ElectionResults("data/2016_Presidential_Results.csv"));
-        }
+
+    }
 
     public static String readFileAsString(String filepath) {
         StringBuilder output = new StringBuilder();

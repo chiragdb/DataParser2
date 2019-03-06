@@ -12,6 +12,9 @@ public class Main {
 
         String data = Utils.readFileAsString("data/2016_Presidential_Results.csv");
         //System.out.println(data);
-        System.out.println(Utils.parse2016ElectionResults("data/2016_Presidential_Results.csv"));
+        test = Utils.parse2016ElectionResults(data);
+        System.out.println(test);
+
+
     }
 }
