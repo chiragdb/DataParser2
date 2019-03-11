@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,10 +37,10 @@ public class Utils {
             String primary = line.substring(0, indexMod);
             String secondary = line.substring((indexMod + 1), size);
             line = primary + secondary;
-            if (line.indexOf("\"") != -1){
+            if (line.indexOf("\"") != -1) {
                 String now = line.substring(line.indexOf("\"") + 1, line.length());
                 now = now.substring(0, now.indexOf("\""));
-                while (now.indexOf(",") != -1){
+                while (now.indexOf(",") != -1) {
                     now = now.substring(0, now.indexOf(",")) + now.substring(now.indexOf(",") + 1, now.length());
                 }
                 int indexSlash = line.indexOf("\"");
@@ -65,6 +66,32 @@ public class Utils {
         return output;
 
     }
+
+    public static ArrayList<Education2016> parseEducation(String data) {
+        ArrayList<Education2016> test = new ArrayList<>();
+        ArrayList<Education2016> output = new ArrayList<>();
+        String[] allLines = data.split("\n");
+        for (int i = 6; i < allLines.length; i++) {
+            Education2016 education = new Education2016(0, 0, 0, 0);
+            Employment2016 employment = new Employment2016(0, 0, 0, 0);
+            Election2016 election = new Election2016(0, 0, 0);
+            String lineForFips = allLines[i];
+            String fips = lineForFips.substring(0, lineForFips.indexOf(","));
+            int fipsNum = Integer.parseInt(fips)
+            String lineForState = allLines[i];
+            lineForState = lineForState.substring(lineForState.indexOf(",") + 1, lineForState.length());
+            String stateName = lineForState.substring(0, lineForState.indexOf(","));
+            String lineForCounty = allLines[i];
+            lineForCounty = lineForCounty.substring(lineForCounty.indexOf(",") + 1, lineForCounty.length());
+            lineForCounty = lineForCounty.substring(lineForCounty.indexOf(",") + 1, lineForCounty.length());
+            String countyName = lineForCounty.substring(0, lineForCounty.indexOf(","));
+            State state = new State(stateName);
+            County county = new County(countyName, fipsNum, election, education, employment);
+            state.addCounty(county);
+        }
+        return output;
+    }
+
 
 }
 

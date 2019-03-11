@@ -97,6 +97,7 @@ public class ElectionResult {
     private void setCombined_fips(int combined_fips) {
         this.combined_fips = combined_fips;
     }
+
     public String toString(){
         String output1 = ("Votes Dem - " + votes_dem + ", Votes Gop - " + votes_gop + ", Total Votes - " + total_votes + ", Per Dem - " + per_dem + ", Per Gop - " + per_gop);
         String output2 = (" Difference - " + diff + ", Per Point Difference - " + per_point_diff + ", State Abbr - " + state_abbr + ", Country - " + country_name + ", Comhined Fips - " + combined_fips);
