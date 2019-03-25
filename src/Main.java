@@ -16,11 +16,11 @@ public class Main {
 //        output = Utils.parse2016ElectionResults(data);
 //        System.out.println(output);
 
-       String data2 = Utils.readFileAsString("data/MortalityRates.csv");
+        String data2 = Utils.readFileAsString("data/MortalityRates.csv");
         Utils.parseMortalityRates(data2);
 
-//        String data3 = Utils.readFileAsString("data/Obesity.csv");
-//        Utils.parseObesity(data3);
+        //String data3 = Utils.readFileAsString("data/Obesity.csv");
+        //Utils.parseObesity(data3);
 
 
 

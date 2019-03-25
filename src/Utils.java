@@ -96,8 +96,8 @@ public class Utils {
             for (int i = 2; i < allLines.length; i = i + 2){
                 String line = allLines[i];
                 String countyName = line.substring(1, line.indexOf(","));
-                line = line.substring(line.indexOf(",") + 1, line.length());
-                line = line.substring(line.indexOf(",") + 1, line.length());
+                String stateName = line.substring(line.indexOf(",") + 1, line.indexOf(",") + 4);
+                System.out.println(stateName);
                 line = line.substring(line.indexOf(",") + 1, line.length());
                 line = line.substring(line.indexOf(",") + 1, line.length());
                 String populationString = line.substring(0, line.indexOf(","));
