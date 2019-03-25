@@ -67,31 +67,59 @@ public class Utils {
 
     }
 
-    public static ArrayList<Education2016> parseEducation(String data) {
-        ArrayList<Education2016> test = new ArrayList<>();
-        ArrayList<Education2016> output = new ArrayList<>();
+//    public static ArrayList<Education2016> parseEducation(String data) {
+//        ArrayList<Education2016> output = new ArrayList<>();
+//        String[] allLines = data.split("\n");
+//        for (int i = 6; i < allLines.length; i++) {
+//            Education2016 education = new Education2016(0, 0, 0, 0);
+//            Employment2016 employment = new Employment2016(0, 0, 0, 0);
+//            Election2016 election = new Election2016(0, 0, 0);
+//            String lineForFips = allLines[i];
+//            String fips = lineForFips.substring(0, lineForFips.indexOf(","));
+//            int fipsNum = Integer.parseInt(fips);
+//            String lineForState = allLines[i];
+//            lineForState = lineForState.substring(lineForState.indexOf(",") + 1, lineForState.length());
+//            String stateName = lineForState.substring(0, lineForState.indexOf(","));
+//            String lineForCounty = allLines[i];
+//            lineForCounty = lineForCounty.substring(lineForCounty.indexOf(",") + 1, lineForCounty.length());
+//            lineForCounty = lineForCounty.substring(lineForCounty.indexOf(",") + 1, lineForCounty.length());
+//            String countyName = lineForCounty.substring(0, lineForCounty.indexOf(","));
+//            State state = new State(stateName);
+//            County county = new County(countyName, fipsNum, election, education, employment);
+//            state.addCounty(county);
+//        }
+//        return output;
+//    }
+
+    public static void parseMortalityRates(String data) {
         String[] allLines = data.split("\n");
-        for (int i = 6; i < allLines.length; i++) {
-            Education2016 education = new Education2016(0, 0, 0, 0);
-            Employment2016 employment = new Employment2016(0, 0, 0, 0);
-            Election2016 election = new Election2016(0, 0, 0);
-            String lineForFips = allLines[i];
-            String fips = lineForFips.substring(0, lineForFips.indexOf(","));
-            int fipsNum = Integer.parseInt(fips)
-            String lineForState = allLines[i];
-            lineForState = lineForState.substring(lineForState.indexOf(",") + 1, lineForState.length());
-            String stateName = lineForState.substring(0, lineForState.indexOf(","));
-            String lineForCounty = allLines[i];
-            lineForCounty = lineForCounty.substring(lineForCounty.indexOf(",") + 1, lineForCounty.length());
-            lineForCounty = lineForCounty.substring(lineForCounty.indexOf(",") + 1, lineForCounty.length());
-            String countyName = lineForCounty.substring(0, lineForCounty.indexOf(","));
-            State state = new State(stateName);
-            County county = new County(countyName, fipsNum, election, education, employment);
-            state.addCounty(county);
-        }
-        return output;
+            for (int i = 2; i < allLines.length; i = i + 2){
+                String line = allLines[i];
+                String countyName = line.substring(1, line.indexOf(","));
+                line = line.substring(line.indexOf(",") + 1, line.length());
+                line = line.substring(line.indexOf(",") + 1, line.length());
+                line = line.substring(line.indexOf(",") + 1, line.length());
+                line = line.substring(line.indexOf(",") + 1, line.length());
+                String populationString = line.substring(0, line.indexOf(","));
+                String rateString = line.substring(line.indexOf(",") + 1, line.length());
+                System.out.println(countyName);
+                System.out.println(populationString + "        " + rateString);
+            }
     }
 
-
+    public static void parseObesity (String data){
+        String[] allLines = data.split("\n");
+        for (int i = 2; i < allLines.length; i = i + 2) {
+            String line = allLines[i];
+            line = line.substring(line.indexOf(",") + 1, line.length());
+            line = line.substring(line.indexOf(",") + 1, line.length());
+            String countyName = line.substring(0, line.indexOf(","));
+            line = line.substring(line.indexOf(",") + 1, line.length());
+            line = line.substring(line.indexOf(",") + 1, line.length());
+            String percentString = line.substring(0, line.indexOf(","));
+            System.out.println(countyName);
+            System.out.println(percentString);
+        }
+    }
 }
 

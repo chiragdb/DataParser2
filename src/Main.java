@@ -8,13 +8,19 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<ElectionResult> output = new ArrayList<>();
-        ArrayList<String> out = new ArrayList<>();
+//        ArrayList<ElectionResult> output = new ArrayList<>();
+//        ArrayList<String> out = new ArrayList<>();
+//
+//        String data = Utils.readFileAsString("data/2016_Presidential_Results.csv");
+//        System.out.println(data);
+//        output = Utils.parse2016ElectionResults(data);
+//        System.out.println(output);
 
-        String data = Utils.readFileAsString("data/2016_Presidential_Results.csv");
-        //System.out.println(data);
-        output = Utils.parse2016ElectionResults(data);
-        System.out.println(output);
+       String data2 = Utils.readFileAsString("data/MortalityRates.csv");
+        Utils.parseMortalityRates(data2);
+
+//        String data3 = Utils.readFileAsString("data/Obesity.csv");
+//        Utils.parseObesity(data3);
 
 
 
