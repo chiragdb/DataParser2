@@ -16,14 +16,13 @@ public class Main {
 //        output = Utils.parse2016ElectionResults(data);
 //        System.out.println(output);
 
-        String data2 = Utils.readFileAsString("data/MortalityRates.csv");
-        Utils.parseMortalityRates(data2);
+       // String mortalityRateData = Utils.readFileAsString("data/MortalityRates.csv");
+        //Utils.parseMortalityRates(mortalityRateData);
 
-        //String data3 = Utils.readFileAsString("data/Obesity.csv");
-        //Utils.parseObesity(data3);
+        String obesityData = Utils.readFileAsString("data/Obesity.csv.csv");
+        Utils.parseObesity(obesityData);
 
-
-
-
+        //String diabetesData = Utils.readFileAsString("data/Test.csv.csv");
+        //Utils.parseDiabetesData(diabetesData);
     }
 }

@@ -96,30 +96,52 @@ public class Utils {
             for (int i = 2; i < allLines.length; i = i + 2){
                 String line = allLines[i];
                 String countyName = line.substring(1, line.indexOf(","));
-                String stateName = line.substring(line.indexOf(",") + 1, line.indexOf(",") + 4);
-                System.out.println(stateName);
+                String stateName = line.substring(line.indexOf(",") + 2, line.indexOf(",") + 4);
                 line = line.substring(line.indexOf(",") + 1, line.length());
                 line = line.substring(line.indexOf(",") + 1, line.length());
                 String populationString = line.substring(0, line.indexOf(","));
                 String rateString = line.substring(line.indexOf(",") + 1, line.length());
-                System.out.println(countyName);
+                System.out.println(countyName + ", " + stateName);
                 System.out.println(populationString + "        " + rateString);
             }
     }
 
     public static void parseObesity (String data){
         String[] allLines = data.split("\n");
-        for (int i = 2; i < allLines.length; i = i + 2) {
+        for (int i = 2; i < allLines.length; i++) {
             String line = allLines[i];
+            String copy = allLines[i];
+            String stateName = copy.substring(0, copy.indexOf(","));
+            copy = copy.substring(copy.indexOf(",") + 1, copy.length());
+            String fipsCode = copy.substring(0, copy.indexOf(","));
+
             line = line.substring(line.indexOf(",") + 1, line.length());
             line = line.substring(line.indexOf(",") + 1, line.length());
             String countyName = line.substring(0, line.indexOf(","));
             line = line.substring(line.indexOf(",") + 1, line.length());
             line = line.substring(line.indexOf(",") + 1, line.length());
             String percentString = line.substring(0, line.indexOf(","));
-            System.out.println(countyName);
-            System.out.println(percentString);
+            System.out.println(stateName + ", " + fipsCode + ", " + countyName + ", " + percentString);
         }
     }
+
+
+    public static void parseDiabetesData(String data) {
+        String[] allLines = data.split("\n");
+        for (int i = 1; i < allLines.length; i++){
+            String line = allLines[i];
+            String state = line.substring(0, line.indexOf(","));
+            line = line.substring(line.indexOf(",") + 1);
+            String fips = line.substring(0, line.indexOf(","));
+            line = line.substring(line.indexOf(",") + 1);
+            String countyName = line.substring(0, line.indexOf(","));
+            line = line.substring(line.indexOf(",") + 1);
+            line = line.substring(line.indexOf(",") + 1);
+            String percentDiabetes = line.substring(0, line.indexOf(","));
+            System.out.println(state + ", " + countyName + ", " + percentDiabetes + ", " + fips);
+        }
+    }
+
+
 }
 
