@@ -19,10 +19,13 @@ public class Main {
        // String mortalityRateData = Utils.readFileAsString("data/MortalityRates.csv");
         //Utils.parseMortalityRates(mortalityRateData);
 
-        String obesityData = Utils.readFileAsString("data/Obesity.csv.csv");
-        Utils.parseObesity(obesityData);
+        //String obesityData = Utils.readFileAsString("data/Obesity.csv.csv");
+        //Utils.parseObesity(obesityData);
 
         //String diabetesData = Utils.readFileAsString("data/Test.csv.csv");
         //Utils.parseDiabetesData(diabetesData);
+
+        String UnemploymentData = Utils.readFileAsString("data/Unemployment.csv");
+        Utils.parseUnemployment(UnemploymentData);
     }
 }

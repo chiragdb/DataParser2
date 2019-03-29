@@ -142,6 +142,18 @@ public class Utils {
         }
     }
 
+    public static void parseUnemployment(String data) {
+        String[] allLines = data.split("\n");
+        for (int i = 8; i < allLines.length; i++){
+            String line = allLines[i];
+            line = line.substring(line.indexOf(",") + 1);
+            line = line.substring(line.indexOf(",") + 1);
+            String county = line.substring(1, line.indexOf(","));
+            System.out.println(county);
+
+        }
+    }
+
 
 }
 
